@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<thead>
+	<tr>
+		<th>Numero</th>
+		<th>Concepto</th>
+		<th>Importe($)</th>
+	</tr>
+</thead>
+<tbody>
+	<tr th:each="factura:${facturas}">
+	<td id="numero" th:text="${factura.numero}"></td>
+	<td id="concepto" th:text="${factura.concepto}"></td>
+	<td id="importe" th:text="${factura.importe}"></td>
+	</tr>
+</tbody>
+</table>
+</body>
+</html>
