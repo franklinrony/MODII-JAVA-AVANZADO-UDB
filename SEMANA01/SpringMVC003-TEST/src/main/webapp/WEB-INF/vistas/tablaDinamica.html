@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="d-grid mb-3 container">
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th th:text="#{inscritos.numero}"></th>
+						<th th:text="#{inscritos.estudiante}"></th>
+						<th th:text="#{inscritos.cum}"></th>
+						<th th:text="#{inscritos.genero}"></th>
+						<th th:text="#{inscritos.matricula}"></th>
+						<th th:text="#{inscritos.numeroCursos}"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="inscrito, insIndex : *{lstInscritos}">
+						<td th:text="${insIndex.index}+1"></td>
+						<td th:text="${inscrito.nombre}+' '+${inscrito.apellido}"></td>
+						<td th:text="${inscrito.cum}"></td>
+						<td th:text="${inscrito.genero}"></td>
+						<td th:text="${inscrito.reingreso} == 'true'? 'Primera':'Segunda'"></td>
+						<td th:text="${#lists.size(inscrito.lstCursos)}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<form action="#" th:action="@{/tablaDinamica}"
+			th:object="${estudiante}" method="post">
+			<div class="p-3">
+				<h2 th:text="#{titulo.aplicacion}"></h2>
+			</div>
+			<div class="container">
+				<div class="row mb-3 form-group">
+					<label class="col-sm-1 col-form-label"
+						th:text="#{estudiante.nombre}"></label>
+					<div class="col-sm-4">
+						<input class="form-control" type="text" th:field="*{nombre}" />
+					</div>
+				</div>
+				<div class="row mb-3 form-group">
+					<label class="col-sm-1 col-form-label"
+						th:text="#{estudiante.apellido}"></label>
+					<div class="col-sm-4">
+						<input class="form-control" type="text" th:field="*{apellido}" />
+					</div>
+				</div>
+				<div class="row mb-3 form-group">
+					<label class="col-sm-1 col-form-label" th:text="#{estudiante.cum}"></label>
+					<div class="col-sm-4">
+						<input class="form-control" type="text" th:field="*{cum}" />
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label class="col-form-label col-sm-1 pt-0">Genero</label>
+					<div class="col-sm-4">
+						<div class="form-group" th:each="gen : ${generos}">
+							<input type="radio" class="form-check-input" th:field="*{genero}"
+								th:value="${gen}" /> <label class="form-check-label"
+								th:for="${#ids.prev('genero')}" th:text="${gen}"></label>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-3 form-group">
+					<label class="col-form-label col-sm-1">Matricula</label>
+					<div class="col-sm-4">
+						<div class="form-check">
+							<label th:for="${#ids.next('reingreso')}"
+								class="form-check-label" th:text="#{estudiante.reingreso}"></label>
+							<input class="form-check-input" type="checkbox"
+								th:field="*{reingreso}" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th th:text="#{estudiante.cursos.head.numero}"></th>
+							<th th:text="#{estudiante.cursos.head.codigo}"></th>
+							<th th:text="#{estudiante.cursos.head.nombre}"></th>
+							<th th:text="#{estudiante.cursos.head.modalidad}"></th>
+							<th>
+								<button type="submit" class="btn btn-primary" name="addRow">Agregar</button>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="curso,cursoStat : *{lstCursos}">
+							<td th:text="${cursoStat.index}+1"></td>
+							<td><input
+								th:field="*{lstCursos[__${cursoStat.index}__].codigo}"
+								type="text" /></td>
+							<td>					
+								<select class="form-select" th:field="*{lstCursos[__${cursoStat.index}__].nombre}">
+									<option th:each="materia : ${materias}" th:value="${materia}"
+										th:text="${materia}"></option>
+								</select>							
+							</td>
+							<td>
+								<select class="form-select" th:field="*{lstCursos[__${cursoStat.index}__].modalidad}">
+									<option th:each="modalidad : ${modalidades}" th:value="${modalidad}"
+										th:text="${modalidad}"></option>
+								</select>
+							</td>
+							<td>
+								<button type="submit" class="btn btn-danger" name="removeRow"
+									th:value="${cursoStat.index}">Eliminar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<input type="submit" class="btn btn-secondary" name="registrarEst"
+					value="Registrar">
+			</div>
+		</form>
+	</div>
+</body>
+</html>

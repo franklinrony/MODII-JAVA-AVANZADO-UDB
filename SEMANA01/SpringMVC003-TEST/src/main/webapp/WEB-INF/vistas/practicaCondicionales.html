@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}">
+<meta charset="ISO-8859-1">
+<title>Condicionales</title>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="d-grid gap-3 container">
+<div class="p-2" th:switch = "${docenteLoginRol}">
+	<h3 th:case = "CORDINADOR" th:text="|Bienvenido ${docenteLogin} usted cuenta con permisos de administrador|"></h3>
+	<p th:case = "DOCENTE" th:text="|Bienvenido ${docenteLogin} usted cuenta con permisos de consulta|"></p>
+	<p th:case = "INVITADO" th:text="|Bienvenido ${docenteLogin} podra realizar consultas limitadas|"></p>
+	<p th:case = "*" th:text="|Bienvenido ${docenteLogin} contactenos para verificar su perfil|"></p>
+</div>
+<div class="p-2">
+<table class="table table-striped">
+<tr th:each="docente : ${lstDocentes}">
+	<td th:text = "${docente.nombre}"></td>
+	<td th:text = "${docente.correo}"></td>
+	<td><a class="btn btn-primary" th:if="${docente.rol == 'CORDINADOR'}">Actualizar</a>
+		<a class="btn btn-danger" th:if="${docente.rol == 'CORDINADOR'}">Eliminar</a>
+		<a class="btn btn-secondary" th:unless="${docente.rol == 'CORDINADOR'}">Consultar</a>		
+	</td>
+</tr>
+</table>
+</div>
+</div>
+</body>
+</html>
+
+
+

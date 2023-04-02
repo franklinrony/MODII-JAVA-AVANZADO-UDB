@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Codigo</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Cum</th>
+				<th>Cuota</th>
+			</tr>
+		</thead>
+		<tr th:each = "estudiante:${listaEstudiantes}">
+			<td th:text="${estudiante.codigo}"></td>
+			<td th:text="${estudiante.nombre}"></td>
+			<td th:text="${estudiante.apellido}"></td>
+			<td th:text="${estudiante.cum}"></td>
+			<td th:text="${estudiante.cuotaMensual}"></td>			
+		</tr>
+	</table>
+</body>
+</html>
