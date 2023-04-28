@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{resources/main.css}">
+<link rel="stylesheet"
+th:href="@{webjars/jquery-ui/1.12.1/jquery-ui.css}">
+<link rel="stylesheet"
+href="webjars/jquery-ui/1.12.1/jquery-ui.theme.css">
+<meta charset="ISO-8859-1">
+<title>Practica Ajax</title>
+<script type="text/javascript"
+th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src='webjars/jquery/3.4.1/jquery.js'></script>
+<script type="text/javascript" src='resources/Funciones.js'></script>
+<script src="webjars/jquery-ui/1.12.1/jquery-ui.js"></script>
+<script src="webjars/jQuery-Autocomplete/1.2.7/jquery.autocomplete.js"></script>
+</head>
+<body>
+<div class="p-3 container">
+<div style="width: 600px;">
+<h3>Auto-Complete usando jQuery</h3>
+<fieldset>
+<legend>Buscar Estudiante</legend>
+<p>
+<input class="form-control" type="text" name="search"
+id="searchBox" style="width: 560px;" />
+</p>
+</fieldset>
+</div>
+<div class="col-8">
+<h3>Seleccione Docente</h3>
+<fieldset>
+<select class="form-select sltDocente" id="docente">
+<option value="0">Seleccione</option>
+<option th:each="doc : ${docentes}"
+th:value="${doc.idDocente}"th:text="${doc.docente}"></option>
+</select>
+</fieldset>
+</div>
+<div class="col-8">
+<h3>Seleccione Curso</h3>
+<fieldset>
+<select class="form-select sltCurso" id="curso">
+<option value="0">Seleccione</option>
+</select>
+</fieldset>
+</div>
+</div>
+</body>
+</html>

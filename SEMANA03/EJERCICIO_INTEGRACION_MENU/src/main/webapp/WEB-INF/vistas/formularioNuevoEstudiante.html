@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}">
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<meta charset="ISO-8859-1">
+<title>Nuevo Estudiante</title>
+<script type="text/javascript"
+th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<!-- action enlaza con el metodo del controlador -->
+<!-- object define objeto -->
+<form th:action="@{formularioInsertarEstudiante}"
+th:object=${estudiante} method="POST">
+<div class="container">
+<div class="p-3">
+<h2 class="h2">Nuevo Estudiante</h2>
+</div>
+<div class="row mb-3 form-group">
+<label class="col-sm-1 col-form-label">Codigo</label>
+<div class="col-sm-4">
+<input class="form-control" type="text" th:field="*{codigo}" />
+</div>
+</div>
+<div class="row mb-3 form-group">
+<label class="col-sm-1 col-form-label">Nombre</label>
+<div class="col-sm-4">
+<input class="form-control" type="text" th:field="*{nombre}" />
+</div>
+</div>
+<div class="row mb-3 form-group">
+<label class="col-sm-1 col-form-label">Apellido</label>
+<div class="col-sm-4">
+<input class="form-control" type="text" th:field="*{apellido}" />
+</div>
+</div>
+<div class="row mb-3 form-group">
+<label class="col-sm-1 col-form-label">Cum</label>
+<div class="col-sm-4">
+<input class="form-control" type="text" th:field="*{cum}" />
+</div>
+</div>
+<div class="row mb-3 form-group">
+<label class="col-sm-1 col-form-label">Cuota</label>
+<div class="col-sm-4">
+<input class="form-control" type="text" th:field="*{cuotaMensual}" />
+</div>
+</div>
+<div class="row mb-3 form-group">
+<div class="col-sm-4">
+<input type="submit" class="btn btn-primary" value="Guardar" />
+<a class="btn btn-secondary" th:href="@{listaEstudiantes}">Retornar</a>
+</div>
+</div>
+</div>
+</form>
+</body>
+</html>

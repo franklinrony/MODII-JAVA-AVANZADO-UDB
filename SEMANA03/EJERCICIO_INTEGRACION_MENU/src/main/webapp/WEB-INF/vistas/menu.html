@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.2/css/bootstrap.min.css}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/5.0.2/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+<div class="container-fluid">
+<div class="row flex-nowrap">
+<div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+<div class="d-flex flex-column align-items-center align-items-sm-start px-
+3 pt-2 text-white min-vh-100">
+<a href="http://localhost:8080/SpringMVC0003/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto
+text-white text-decoration-none">
+<span class="fs-5 d-none d-sm-inline">Practica Thymeleaf</span>
+</a>
+<ul	class="nav nav-pills flex-column mb-sm-auto mb-0 align-itemscenter align-items-sm-start" id="menu">
+<li class="nav-item"><a th:href="@{practicaMensajes}"
+							class="nav-link align-middle px-0"> <i class="fs-4 bi-chat"></i>
+								<span class="ms-1 d-none d-sm-inline">Mensajes</span>
+						</a>
+						</li>
+<li><a id="MnEstudiante" th:href="@{condiciones}" class="navlink px-0 align-middle"> <i class="fs-4 bi-people"></i>
+<span class="ms-1 d-none d-sm-inline">Condicion</span></a></li>
+
+	
+<li><a th:href="@{registro}"
+							class="nav-link px-0 align-middle"> <i class="fs-4 bi-table"></i><span
+								class="ms-1 d-none d-sm-inline">Inscripcion cursos</span>
+						</a></li>
+						<li><a th:href="@{principal}" class="nav-link px-0 align-middle"> <i class="fs-4 bi-table"></i><span
+								class="ms-1 d-none d-sm-inline">Registro Estudiante</span>
+						</a></li>
+</ul>
+<hr>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
